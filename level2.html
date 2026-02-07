@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Level 2 - Sweet Choice</title>
+  <title>Level 2 - Memory Match</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-  <h2>🐱 Level 2: Sweet Choice</h2>
-  <p>Which chocolate would Zebitsu give you?</p>
+  <h2>🐱 Level 2: Agent Memory</h2>
+  <p>Match the Valorant Cat Agents!</p>
 
-  <button class="btn" onclick="win()">🍫 Dark Chocolate</button>
-  <button class="btn" onclick="win()">🍓 Strawberry Chocolate</button>
-  <button class="btn" onclick="win()">🍩 Choco Donut</button>
+  <div class="grid" id="grid"></div>
 
-  <p id="msg"></p>
+  <p id="msg" class="soft"></p>
 
   <a id="next" href="level3.html" class="btn hidden">FINAL LEVEL 💖</a>
 </div>
 
 <script>
-function win() {
-  document.getElementById("msg").innerText =
-    "Correct 😌 Because Zebitsu gives you everything 💝";
-  document.getElementById("next").classList.remove("hidden");
-}
+const cards = ["😺","😺","🐱","🐱","😼","😼"];
+let first = null;
+let lock = false;
+let matched = 0;
+
+cards.sort(() => 0.5 - Math.random());
+
+const grid = document.getElementById("grid");
+
+cards.forEach(icon => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerText = "❓";
+
+  card.onclick = () => {
+    if (lock || card.innerText !== "❓") return;
+
+    card.innerText = icon;
+
+    if (!first) {
+      first = card;
+    } else {
+      if (first.innerText === card.innerText) {
+        matched += 2;
+        first = null;
+
+        if (matched === cards.length) {
+          document.getElementById("msg").innerText =
+            "Perfect memory 😌 Zebitsu is impressed!";
+          document.getElementById("next").classList.remove("hidden");
+        }
+      } else {
+        lock = true;
+        setTimeout(() => {
+          first.innerText = "❓";
+          card.innerText = "❓";
+          first = null;
+          lock = false;
+        }, 700);
+      }
+    }
+  };
+
+  grid.appendChild(card);
+});
 </script>
 
 </body>
