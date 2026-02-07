@@ -9,28 +9,50 @@
 
 <div class="container">
   <h2>🍫 Level 1: Chocolate Rush</h2>
-  <p>Tap chocolates to win!</p>
+  <p>Collect 24 chocolates in the basket!</p>
 
-  <h3>Score: <span id="score">0</span></h3>
+  <p>Collected: <span id="count">0</span> / 24</p>
+  <p id="msg" class="soft"></p>
 
-  <button class="btn" onclick="tap()">🍫 TAP 🍫</button>
-
-  <p id="msg"></p>
+  <div class="basket">🧺</div>
 
   <a id="next" href="level2.html" class="btn hidden">NEXT LEVEL ❤️</a>
 </div>
 
+<script src="common.js"></script>
 <script>
-let score = 0;
-function tap() {
-  score++;
-  document.getElementById("score").innerText = score;
+let count = 0;
+const basket = document.querySelector(".basket");
 
-  if (score === 10) {
-    document.getElementById("msg").innerText =
-      "Sweet! Zebitsu is impressed 😘";
-    document.getElementById("next").classList.remove("hidden");
-  }
+function dropChocolate() {
+  const choco = document.createElement("div");
+  choco.className = "choco";
+  choco.innerText = "🍫";
+  choco.style.left = Math.random() * 80 + "%";
+  document.body.appendChild(choco);
+
+  choco.addEventListener("click", () => {
+    count++;
+    document.getElementById("count").innerText = count;
+    choco.remove();
+
+    if (count === 5) msg("Sweet start 😋");
+    if (count === 12) msg("Gobi is fast!");
+    if (count === 18) msg("Zebitsu is watching 👀💗");
+
+    if (count >= 24) {
+      msg("LEVEL COMPLETE 😈🍫");
+      document.getElementById("next").classList.remove("hidden");
+    }
+  });
+
+  setTimeout(() => choco.remove(), 4000);
+}
+
+setInterval(dropChocolate, 800);
+
+function msg(t) {
+  document.getElementById("msg").innerText = t;
 }
 </script>
 
