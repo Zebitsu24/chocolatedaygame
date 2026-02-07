@@ -5,15 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="entrance">
+
+<div class="floating">🍫 💖 😺 🍫 💘</div>
 
 <div class="container">
-  <h1>🍫 Hi Gobi 🍫</h1>
-  <p>Welcome to your Chocolate Day Quest</p>
-  <p class="soft">Built with love by Zebitsu 💖</p>
+  <h1>Hi Gobi 🍫</h1>
+  <p class="subtitle">Ready to enter the Chocolate Day Quest?</p>
+  <p class="soft">Valorant Edition • Built by Zebitsu 💕</p>
 
-  <a href="level1.html" class="btn">ENTER THE GAME 🎮</a>
+  <button class="btn" onclick="enter()">ENTER THE GAME 🎮</button>
 </div>
+
+<script>
+function enter() {
+  document.body.classList.add("fade");
+  setTimeout(() => {
+    window.location.href = "level1.html";
+  }, 600);
+}
+</script>
 
 </body>
 </html>
