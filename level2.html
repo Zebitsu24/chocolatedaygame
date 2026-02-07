@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Level 2 - Sweet Choice</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>🐱 Level 2: Sweet Choice</h2>
+  <p>Which chocolate would Zebitsu give you?</p>
+
+  <button class="btn" onclick="win()">🍫 Dark Chocolate</button>
+  <button class="btn" onclick="win()">🍓 Strawberry Chocolate</button>
+  <button class="btn" onclick="win()">🍩 Choco Donut</button>
+
+  <p id="msg"></p>
+
+  <a id="next" href="level3.html" class="btn hidden">FINAL LEVEL 💖</a>
+</div>
+
+<script>
+function win() {
+  document.getElementById("msg").innerText =
+    "Correct 😌 Because Zebitsu gives you everything 💝";
+  document.getElementById("next").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
