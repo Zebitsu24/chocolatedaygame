@@ -22,7 +22,12 @@
 </div>
 
 <script>
-const cards = ["😺","😺","🐱","🐱","😼","😼"];
+const cards = [
+  "cat1.jpg","cat1.jpg",
+  "cat2.jpg","cat2.jpg",
+  "cat3.jpg","cat3.jpg"
+];
+
 let first = null;
 let lock = false;
 let matched = 0;
@@ -31,36 +36,44 @@ cards.sort(() => 0.5 - Math.random());
 
 const grid = document.getElementById("grid");
 
-cards.forEach(icon => {
+cards.forEach(src => {
   const card = document.createElement("div");
   card.className = "card";
-  card.innerText = "❓";
+
+  const img = document.createElement("img");
+  img.src = "back.jpg"; // card back image (JPG)
+  img.className = "card-img";
+
+  card.appendChild(img);
 
   card.onclick = () => {
-    if (lock || card.innerText !== "❓") return;
+    if (lock || img.dataset.open === "true") return;
 
-    card.innerText = icon;
+    img.src = src;
+    img.dataset.open = "true";
 
     if (!first) {
-      first = card;
+      first = img;
     } else {
-      if (first.innerText === card.innerText) {
+      if (first.src.includes(src)) {
         matched += 2;
         first = null;
 
         if (matched === cards.length) {
           document.getElementById("msg").innerText =
-            "Perfect memory 😌 Zebitsu is impressed!";
+            "Purrfect memory 😻 Zebitsu is proud!";
           document.getElementById("next").classList.remove("hidden");
         }
       } else {
         lock = true;
         setTimeout(() => {
-          first.innerText = "❓";
-          card.innerText = "❓";
+          first.src = "back.jpg";
+          first.dataset.open = "false";
+          img.src = "back.jpg";
+          img.dataset.open = "false";
           first = null;
           lock = false;
-        }, 700);
+        }, 800);
       }
     }
   };
@@ -68,6 +81,7 @@ cards.forEach(icon => {
   grid.appendChild(card);
 });
 </script>
+
 
 </body>
 </html>
