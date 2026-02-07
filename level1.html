@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Level 1 - Chocolate Rush</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>🍫 Level 1: Chocolate Rush</h2>
+  <p>Tap chocolates to win!</p>
+
+  <h3>Score: <span id="score">0</span></h3>
+
+  <button class="btn" onclick="tap()">🍫 TAP 🍫</button>
+
+  <p id="msg"></p>
+
+  <a id="next" href="level2.html" class="btn hidden">NEXT LEVEL ❤️</a>
+</div>
+
+<script>
+let score = 0;
+function tap() {
+  score++;
+  document.getElementById("score").innerText = score;
+
+  if (score === 10) {
+    document.getElementById("msg").innerText =
+      "Sweet! Zebitsu is impressed 😘";
+    document.getElementById("next").classList.remove("hidden");
+  }
+}
+</script>
+
+</body>
+</html>
