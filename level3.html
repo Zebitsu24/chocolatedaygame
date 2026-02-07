@@ -5,22 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="final-bg">
+
+<div class="floating">💖 💘 💞 😘</div>
 
 <div class="container">
-  <h2>💖 Final Level 💖</h2>
-
-  <p class="final">
-    Gobi…<br><br>
-    You passed every level 🍫<br>
-    But the real reward was never a game.<br><br>
-    It was <b>my heart</b> 💘<br><br>
-    Happy Chocolate Day ❤️<br>
-    Always yours,<br>
-    <b>Zebitsu</b> 😘
-  </p>
-
+  <p id="text" class="final-text"></p>
+  <button class="btn" onclick="confetti()">Happy Chocolate Day 💝</button>
 </div>
+
+<script>
+const message = `
+Gobi…
+You completed every level 🍫
+But the real prize
+was never chocolate…
+
+It was my heart 💖
+
+From Zebitsu,
+always 😘
+`;
+
+let i = 0;
+const el = document.getElementById("text");
+
+function type() {
+  if (i < message.length) {
+    el.innerHTML += message.charAt(i);
+    i++;
+    setTimeout(type, 60);
+  }
+}
+type();
+
+function confetti() {
+  alert("💥💖💥 YOU ARE MY FAVORITE PERSON 💥💖💥");
+}
+</script>
 
 </body>
 </html>
